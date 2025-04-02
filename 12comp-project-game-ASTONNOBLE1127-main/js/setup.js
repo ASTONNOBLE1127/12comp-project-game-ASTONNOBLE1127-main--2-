@@ -37,5 +37,7 @@ function draw() {
         gameRun()
     } else if (gameState == 'plane') {
         planeRun()
+    } else if (gameState == 'tonk') {
+        tonkRun()
     }
 }

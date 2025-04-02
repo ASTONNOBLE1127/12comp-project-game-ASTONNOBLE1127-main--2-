@@ -67,6 +67,11 @@ function collect(bullet, gem) {
 
 function planeRun() {
     background(bgC)
+    if (kb.presses('e')) {
+        allSprites.remove()
+        tonkers()
+        gameState = 'tonk'
+    }
     //console.log(camera.y)
     camera.y--
     plane.y--
