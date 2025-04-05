@@ -43,7 +43,7 @@ function gameRun() {
     //health related
     if (health / 2 > heartCount) {
         while (health / 2 > heartCount) {
-            hearts[heartCount] = new Sprite(7,7,7,7,'n')
+            hearts[heartCount] = new deletes.Sprite(7,7,7,7,'n')
             hearts[heartCount].image = (heart)
             hearts[heartCount].scale = (canvasHeight/194)
             heartCount = heartCount + 1
@@ -117,8 +117,6 @@ function gameRun() {
             if (((dist(player.x, player.y, golem[i].x, golem[i].y)) > 140) && 
             (300 > (dist(player.x, player.y, golem[i].x, golem[i].y)))) {
                 ERun(golem[i]);
-            } else if (Atking == false) {
-                golem[i].changeAni('idle');
             }
         }
     }

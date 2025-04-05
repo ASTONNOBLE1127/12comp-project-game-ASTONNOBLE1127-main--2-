@@ -222,6 +222,7 @@ function golemMaker() {
         track = Number(track)
         let track2 = GOLEMSPAWN[level].slice(i * 6 + 3, i * 6 + 6)
         track2 = Number(track2)
+        golem[i].vel.y = 0
         golem[i].x = track * (canvasHeight/16)
         golem[i].y = track2 * (canvasHeight/16)
         //golem[i] = new Sprite(((canvasHeight/256) * 16 * track),(canvasHeight/256) * 16 * track2,90,64,'n')
@@ -307,7 +308,7 @@ function hitboxMaker() {
 function healthbarMaker() {
     heartCount = health/2
     for (let i = 0; i < heartCount; i++) {
-        hearts[i] = new Sprite(7,7,7,7,'n')
+        hearts[i] = new deletes.Sprite(7,7,7,7,'n')
         hearts[i].image = (heart)
         hearts[i].scale = (canvasHeight/194)
     }
@@ -345,7 +346,7 @@ function playerMaker() {
 /******************************************************/
 
 function doorMaker() {
-    door = new Sprite((canvasHeight/16)* DOORPOINT[level*2],(canvasHeight/16)* DOORPOINT[level*2+1],16,32,'n')
+    door = new deletes.Sprite((canvasHeight/16)* DOORPOINT[level*2],(canvasHeight/16)* DOORPOINT[level*2+1],16,32,'n')
     door.spriteSheet = tiles
     door.addAnis({
         closed:{w:16, h:32, col:13, row:5},
@@ -391,7 +392,7 @@ function endscreenButtonsMaker() {
 
 function starMaker() {
     for (let i = 0; i < 3; i++) {
-        star[i] = new Sprite(1000000000000,1,15,14,'n');
+        star[i] = new deletes.Sprite(1000000000000,1,15,14,'n');
         star[i].opacity = 0; 
         star[i].scale = canvasHeight/120; 
         star[i].image = starImg;

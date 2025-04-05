@@ -37,7 +37,7 @@ async function EAtk(enemy) {
     Atking = true
     Anim = true
     await enemy.changeAni('attack')
-    await enemy.changeAni('idle')
+    enemy.changeAni('idle')
     if (enemy.overlapping(player) && enemy.health > 0) {
         health-= enemy.dmg
     }
