@@ -223,6 +223,7 @@ function golemMaker() {
         let track2 = GOLEMSPAWN[level].slice(i * 6 + 3, i * 6 + 6)
         track2 = Number(track2)
         golem[i].vel.y = 0
+        golem[i].health = golem[i].maxHealth
         golem[i].x = track * (canvasHeight/16)
         golem[i].y = track2 * (canvasHeight/16)
         //golem[i] = new Sprite(((canvasHeight/256) * 16 * track),(canvasHeight/256) * 16 * track2,90,64,'n')
