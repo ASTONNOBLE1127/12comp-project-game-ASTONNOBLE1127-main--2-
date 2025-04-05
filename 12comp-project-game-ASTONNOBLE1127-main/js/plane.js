@@ -36,7 +36,7 @@ function planes() {
 	gem.y = () => random(0, canvas.h);
 	gem.amount = 300;
 
- for ( y = 0; y < 1; y++) {
+ for ( y = 0; y < 16; y++) {
         for (let x = 0; x < 16; x++) {
         let nx = NSCALE * x;
         let ny = NSCALE * y;
@@ -52,6 +52,7 @@ function planes() {
         }
     }
     cameraTrack = camera.y
+    y = 0
 }
 
 
@@ -75,12 +76,12 @@ function planeRun() {
     //console.log(camera.y)
     camera.y--
     plane.y--
-    if (cameraTrack + canvasHeight/16 <= camera.y) {
+    if (cameraTrack - canvasHeight/16 >= camera.y) {
         cameraTrack = camera.y
         for (let x = 0; x < 16; x++) {
             let nx = NSCALE * x;
             let ny = NSCALE * y;
-    
+            console.log(cameraTrack)
           let c = NLEVEL * noise(nx, ny);
           til = new Sprite(x * canvasHeight/16 + canvasHeight/32, y * canvasHeight/16 + canvasHeight/32, canvasHeight/16, canvasHeight/16, 'n')
           //til.spriteSheet = planeTiles
