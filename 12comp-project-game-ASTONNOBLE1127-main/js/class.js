@@ -5,7 +5,7 @@
 /**********************************************************/
 
 class enemy {
-    constructor(spriteImg,HP,DMG,Scale,w,h,anis,Type,offsetY,trigdist,atkdist) {
+    constructor(spriteImg,HP,DMG,Scale,w,h,anis,Type,offsetY,trigdist,atkdist,del) {
         this.name = new enemys.Sprite(80,432)
         this.name.spriteSheet = spriteImg
         this.name.health = HP
@@ -13,6 +13,7 @@ class enemy {
         this.name.w = w
         this.name.h = h
         this.name.addAnis(anis)
+        this.name.del = del
         golem.push(this.name)
         this.name.changeAni('idle')
         this.name.offset.y = offsetY
@@ -45,18 +46,17 @@ async function EAtk(enemy) {
     await enemy.changeAni('attack')
     await enemy.changeAni('idle')
     if (enemy.overlapping(player) && enemy.health > 0) {
-        health--
-        health--
+        health-= enemy.dmg
     }
     updateHealth()
     Anim = false
-    await delay(1500)
+    await delay(enemy.del * 100)
     Atking = false
 }
 async function EHurt(enemy) {
     console.log(enemy.health)
     enemy.health-= playerDamage
-    if (enemy.health > 0 && Ani == false) {
+    if (enemy.health > 0 && Anim == false) {
         await enemy.changeAni('hurt'); 
         enemy.changeAni('idle');
         console.log('hit')
@@ -80,6 +80,9 @@ function canAtk(player, enemy) {
             console.log('hit')
             PAtk()
         }
+    }
+    if (Atking == false) {
+        EAtk(enemy)
     }
 }
 async function PAtk() {

@@ -51,10 +51,4 @@ function levelSensors() {
         level2()
         gameState = 'game'
     }
-    if (kb.presses('e')) {
-        golem2.setPos(100, 100)
-    }
-    if (kb.pressing('a')) {
-        golem2.Run()
-    }
 }
