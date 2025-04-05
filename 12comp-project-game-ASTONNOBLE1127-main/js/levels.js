@@ -13,9 +13,16 @@
 //
 // This function creates the level select screen
 /**********************************************************/
-
+var golem2
 function levelScreen() {
     background('blue')
+    golem2 = new enemy(golemSheet, 5, 1, (canvasHeight/300), 40, 40, {
+        idle: {row: 3 , frames: 8 , w:90, h:64},
+        attack: {row: 0 , frames: 11 , w:90, h:64, frameDelay: 7},
+        hurt: {row: 2 , frames: 4 , w:90, h:64, frameDelay: 14},
+        death: {row: 1 , frames: 12 , w:90, h:64, frameDelay: 14},
+        run: {row: 4 , frames: 10 , w:90, h:64}
+    },'golem',24, 300,140)
     lvl1 = new Sprite(canvasHeight * (5/100),canvasHeight * (95/100), 16,'k')
     lvl1.spriteSheet = levelImg
     lvl1.addAni({w:13, h:13, col:0, row:0})
@@ -50,5 +57,11 @@ function levelSensors() {
         allSprites.remove()
         level2()
         gameState = 'game'
+    }
+    if (kb.presses('e')) {
+        golem2.setPos(100, 100)
+    }
+    if (kb.pressing('a')) {
+        golem2.Run()
     }
 }

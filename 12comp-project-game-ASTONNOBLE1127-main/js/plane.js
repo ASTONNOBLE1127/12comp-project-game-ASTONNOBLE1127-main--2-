@@ -36,7 +36,7 @@ function planes() {
 	gem.y = () => random(0, canvas.h);
 	gem.amount = 300;
 
- for ( y = 0; y < 16; y++) {
+ for ( y = 0; y < 1; y++) {
         for (let x = 0; x < 16; x++) {
         let nx = NSCALE * x;
         let ny = NSCALE * y;
@@ -75,7 +75,7 @@ function planeRun() {
     //console.log(camera.y)
     camera.y--
     plane.y--
-    if (cameraTrack - canvasHeight/16 <= camera.y) {
+    if (cameraTrack + canvasHeight/16 <= camera.y) {
         cameraTrack = camera.y
         for (let x = 0; x < 16; x++) {
             let nx = NSCALE * x;

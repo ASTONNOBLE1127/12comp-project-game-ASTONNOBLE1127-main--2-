@@ -65,11 +65,13 @@ let hearts = []
 //enemies
 var wolfAtking = false
 var golemAtking = false
+var Atking = false
+var Ani = false
 var enemyCount = 0
 var wolf = []
 var golem = []
 var golemHit = []
-var direction = 0
+var direction = 1
 const WOLFSPAWN = ['045009','005040008040010009016009080001','']
 const GOLEMSPAWN = ['','070035005009075001','']
 var wolfCount
@@ -106,6 +108,7 @@ function uni() {
     bricks = new Group()
     spikes = new Group()
     climb = new Group()
+    enemys = new Group()
 
     //tiles
     hopBlock = new Group(); hopBlock.tile = '`'; hopBlock.h = 10;
@@ -141,6 +144,7 @@ function uni() {
     const RAIL1 = new climbs('*', 'n',{w:16, h:16, col:1, row:9})
     const RAIL2 = new climbs('(', 'n',{w:16, h:16, col:2, row:9})
     const RAIL3 = new climbs(')', 's',{w:16, h:16, col:3, row:9})
+
 }
 
 
@@ -230,6 +234,7 @@ function golemMaker() {
         golem[i].scale = ((canvasHeight/300))
         golemHit[i].scale = ((canvasHeight/300))
         golem[i].health = 5
+        golem[i].debug = true
     }
 }
 

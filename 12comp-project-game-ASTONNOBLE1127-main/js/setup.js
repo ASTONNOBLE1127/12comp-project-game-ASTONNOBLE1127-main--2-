@@ -16,7 +16,7 @@
 function setup() {
     canvasHeight = (16 * Math.floor(windowHeight / 16 - 1));
     cnv = new Canvas(canvasHeight, canvasHeight);
-    world.gravity.y = 10;
+    //world.gravity.y = 10;
     uni()
     startScreen()
 }
