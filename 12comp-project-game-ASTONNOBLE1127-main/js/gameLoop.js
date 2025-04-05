@@ -113,11 +113,11 @@ function gameRun() {
         } else {hitbox.drag = 0}
 
         //enemys
-        for (let i = 0; i < i; i++) {
+        for (let i = 0; i < 1; i++) {
             if (((dist(player.x, player.y, golem[i].x, golem[i].y)) > 140) && 
             (300 > (dist(player.x, player.y, golem[i].x, golem[i].y)))) {
                 ERun(golem[i]);
-            } else if (golemAtking == false) {
+            } else if (Atking == false) {
                 golem[i].changeAni('idle');
             }
         }
