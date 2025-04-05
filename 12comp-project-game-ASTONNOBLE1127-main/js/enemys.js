@@ -30,7 +30,7 @@ async function ERun(enemy) {
         direction = -1;    
     }
     enemy.scale.x = (canvasHeight/300) * direction
-    enemy.vel.x = (direction * 2)
+    enemy.vel.x = (direction * canvasHeight/288)
     await enemy.changeAni('run')
     enemy.changeAni('idle')
 }

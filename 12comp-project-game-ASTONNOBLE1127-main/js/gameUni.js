@@ -226,21 +226,6 @@ function golemMaker() {
         golem[i].health = golem[i].maxHealth
         golem[i].x = track * (canvasHeight/16)
         golem[i].y = track2 * (canvasHeight/16)
-        //golem[i] = new Sprite(((canvasHeight/256) * 16 * track),(canvasHeight/256) * 16 * track2,90,64,'n')
-       // golemHit[i]= new Sprite(((canvasHeight/256) * 16 * track),(canvasHeight/256) * 16 * track2,64,64,'d')
-        //golem[i].spriteSheet = golemSheet
-        //golem[i].addAnis({
-          //  idle: {row: 3 , frames: 8},
-          //  attack: {row: 0 , frames: 11, frameDelay: 7},
-           // hurt: {row: 2 , frames: 4, frameDelay: 14},
-          //  death: {row: 1 , frames: 12, frameDelay: 14},
-          //  run: {row: 4 , frames: 10}
-        //})
-       // golem[i].changeAni('idle')
-       // golem[i].scale = ((canvasHeight/300))
-       // golemHit[i].scale = ((canvasHeight/300))
-       // golem[i].health = 5
-       // golem[i].debug = true
     }
 }
 
