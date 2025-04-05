@@ -7,7 +7,7 @@
 
 class enemy {
     constructor(spriteImg,HP,DMG,Scale,w,h,anis,Type,offsetY,trigdist,atkdist,del) {
-        this.name = new enemys.Sprite(80,432)
+        this.name = new enemys.Sprite(800,432)
         this.name.spriteSheet = spriteImg
         this.name.health = HP
         this.name.dmg = DMG

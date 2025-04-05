@@ -113,7 +113,7 @@ function gameRun() {
         } else {hitbox.drag = 0}
 
         //enemys
-        for (let i = 0; i < golemCount; i++) {
+        for (let i = 0; i < i; i++) {
             if (((dist(player.x, player.y, golem[i].x, golem[i].y)) > 140) && 
             (300 > (dist(player.x, player.y, golem[i].x, golem[i].y)))) {
                 ERun(golem[i]);

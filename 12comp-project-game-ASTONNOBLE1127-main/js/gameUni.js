@@ -217,27 +217,28 @@ function gameuni() {
 /******************************************************/
 
 function golemMaker() {
-    for (let i = 0; i < (golemCount); i++) {
+    for (let i = 0; i < 1; i++) {
         let track = GOLEMSPAWN[level].slice(i * 6, i * 6 + 3)
         track = Number(track)
         let track2 = GOLEMSPAWN[level].slice(i * 6 + 3, i * 6 + 6)
         track2 = Number(track2)
-        console.log(track,track2)
-        golem[i] = new Sprite(((canvasHeight/256) * 16 * track),(canvasHeight/256) * 16 * track2,90,64,'n')
-        golemHit[i]= new Sprite(((canvasHeight/256) * 16 * track),(canvasHeight/256) * 16 * track2,64,64,'d')
-        golem[i].spriteSheet = golemSheet
-        golem[i].addAnis({
-            idle: {row: 3 , frames: 8},
-            attack: {row: 0 , frames: 11, frameDelay: 7},
-            hurt: {row: 2 , frames: 4, frameDelay: 14},
-            death: {row: 1 , frames: 12, frameDelay: 14},
-            run: {row: 4 , frames: 10}
-        })
-        golem[i].changeAni('idle')
-        golem[i].scale = ((canvasHeight/300))
-        golemHit[i].scale = ((canvasHeight/300))
-        golem[i].health = 5
-        golem[i].debug = true
+        golem[i].x = track * (canvasHeight/16)
+        golem[i].y = track2 * (canvasHeight/16)
+        //golem[i] = new Sprite(((canvasHeight/256) * 16 * track),(canvasHeight/256) * 16 * track2,90,64,'n')
+       // golemHit[i]= new Sprite(((canvasHeight/256) * 16 * track),(canvasHeight/256) * 16 * track2,64,64,'d')
+        //golem[i].spriteSheet = golemSheet
+        //golem[i].addAnis({
+          //  idle: {row: 3 , frames: 8},
+          //  attack: {row: 0 , frames: 11, frameDelay: 7},
+           // hurt: {row: 2 , frames: 4, frameDelay: 14},
+          //  death: {row: 1 , frames: 12, frameDelay: 14},
+          //  run: {row: 4 , frames: 10}
+        //})
+       // golem[i].changeAni('idle')
+       // golem[i].scale = ((canvasHeight/300))
+       // golemHit[i].scale = ((canvasHeight/300))
+       // golem[i].health = 5
+       // golem[i].debug = true
     }
 }
 
@@ -337,7 +338,7 @@ function playerMaker() {
     player.scale = (canvasHeight/256);
     player.changeAni('idle')
 }
-
+                                             
 /******************************************************/
 //doorMaker()
 //makes the door
@@ -647,7 +648,7 @@ async function wolfRun() {
 /******************************************************/
 //golemDeath()
 //makes the golem die
-/******************************************************/
+/******************************************************
 
 async function golemDeath() {
     await golem[I].changeAni('hurt')
@@ -661,7 +662,7 @@ async function golemDeath() {
 /******************************************************/
 //golemAtk()
 //makes the golem attack
-/******************************************************/
+/******************************************************
 
 async function golemAtk() {
     golemAtking = true
@@ -681,7 +682,7 @@ async function golemAtk() {
 /******************************************************/
 //golemHurt()
 //run on golem hurt
-/******************************************************/
+/******************************************************
 
 async function golemHurt() {
     golem[I].health-= playerDamage
@@ -697,7 +698,7 @@ async function golemHurt() {
 /******************************************************/
 //golemRun()
 //makes the golem run
-/******************************************************/
+/******************************************************
 
 async function golemRun() {
     golemHit[L].vel.x = (direction * 2)

@@ -12,14 +12,23 @@
 /***********************************************************/
 //setup()
 /***********************************************************/
+//var golemsed = []
 
 function setup() {
     canvasHeight = (16 * Math.floor(windowHeight / 16 - 1));
     cnv = new Canvas(canvasHeight, canvasHeight);
-    //world.gravity.y = 10;
+    world.gravity.y = 10;
     uni()
     startScreen()
-}
+    
+      golem2 = new enemy(golemSheet, 5, 2, (canvasHeight/300), 40, 40, {
+            idle: {row: 3 , frames: 8 , w:90, h:64},
+            attack: {row: 0 , frames: 11 , w:90, h:64, frameDelay: 7},
+            hurt: {row: 2 , frames: 4 , w:90, h:64, frameDelay: 14},
+            death: {row: 1 , frames: 12 , w:90, h:64, frameDelay: 14},
+            run: {row: 4 , frames: 10 , w:90, h:64}
+        },'golem',24, 300,140,1.5)
+    }
 
 /***********************************************************/
 //draw()
