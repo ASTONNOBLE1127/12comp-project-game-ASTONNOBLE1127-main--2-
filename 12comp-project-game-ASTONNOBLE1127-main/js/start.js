@@ -16,9 +16,9 @@
 
 function startScreen() {
     //start buttons
-    startButton = new Sprite((canvasHeight)/2,(canvasHeight)/3,(canvasHeight)/6,(canvasHeight)/15,'k')
-    tutorialButton = new Sprite((canvasHeight)/2,(canvasHeight)/2.4,(canvasHeight)/6,(canvasHeight)/15,'k')
-    settingsButton = new Sprite((canvasHeight)/2,(canvasHeight)/2,(canvasHeight)/6,(canvasHeight)/15,'k')
+    startButton = new deletes.Sprite((canvasHeight)/2,(canvasHeight)/3,(canvasHeight)/6,(canvasHeight)/15,'k')
+    tutorialButton = new deletes.Sprite((canvasHeight)/2,(canvasHeight)/2.4,(canvasHeight)/6,(canvasHeight)/15,'k')
+    settingsButton = new deletes.Sprite((canvasHeight)/2,(canvasHeight)/2,(canvasHeight)/6,(canvasHeight)/15,'k')
     
     //start button images
     startButton.image = startImage
@@ -36,6 +36,18 @@ function startScreen() {
     camera.y = canvasHeight/2
     allSprites.pixelPerfect = true;
     noSmooth()
+    player2 = new players(playerSheet,10,1,(canvasHeight/256),16,32,{
+        jump: { row: 1, frames: 6, frameDelay: 10 },
+        death: { row: 14, frames: 7, frameDelay: 10 },
+        walk: { row: 0, frames: 8 },
+        idle: { row: 1, frames: 1,w:32,h:32 },
+        dead: {w:32, h:32, col:6, row:14 },
+        stab: { row: 12, frames: 10 }, 
+        slash: { row: 11, frames: 10 },
+        swing: { row: 10, frames: 10 },
+        climb: { row: 4, frames: 8, frameDelay: 10},
+        clim: {w:32, h:32, col:1, row:4 }
+    },-4,0)
 }
 
 /***********************************************************/
@@ -45,16 +57,16 @@ function startScreen() {
 
 function startSensors() {
     if (startButton.mouse.presses()) {
-        allSprites.remove()
+        deletes.removeAll(); 
         levelScreen()
         noSmooth()
         gameState = "levels"
     } else if (tutorialButton.mouse.presses()) {
-        allSprites.remove()
+        deletes.removeAll(); 
         tutorial()
         gameState = "game"
     } else if (settingsButton.mouse.presses()) {
-        allSprites.remove()
+        deletes.removeAll(); 
         planes()
         gameState = "plane"
     }

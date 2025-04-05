@@ -105,10 +105,13 @@ var textScale
 
 function uni() {
     //groups
-    bricks = new Group()
-    spikes = new Group()
-    climb = new Group()
+    deletes = new Group()
+    bricks = new deletes.Group()
+    spikes = new deletes.Group()
+    climb = new deletes.Group()
     enemys = new Group()
+    words = new deletes.Group()
+
 
     //tiles
     hopBlock = new Group(); hopBlock.tile = '`'; hopBlock.h = 10;
@@ -294,6 +297,7 @@ function hitboxMaker() {
     hitbox.opacity = 0
 }
 
+
 /******************************************************/
 //healthbarMaker()
 //makes the healthbar for the player
@@ -328,7 +332,7 @@ function playerMaker() {
         slash: { row: 11, frames: 10 },
         swing: { row: 10, frames: 10 },
         climb: { row: 4, frames: 8, frameDelay: 10},
-        clim: {w:32, h:32, col:1, row:4 },
+        clim: {w:32, h:32, col:1, row:4 }
     });
     player.scale = (canvasHeight/256);
     player.changeAni('idle')
@@ -356,7 +360,7 @@ function doorMaker() {
 /******************************************************/
 
 function endscreenMaker() {
-    ends = new Sprite(0,0,78,96,'n')
+    ends = new deletes.Sprite(0,0,78,96,'n')
     ends.image = (endScreen)
     ends.scale = (canvasHeight/128)
     ends.opacity = 0
@@ -368,12 +372,12 @@ function endscreenMaker() {
 /******************************************************/
 
 function endscreenButtonsMaker() {
-    menuButton = new Sprite(camera.x + (canvasHeight/5),10000000000,15,15,'k')
+    menuButton = new deletes.Sprite(camera.x + (canvasHeight/5),10000000000,15,15,'k')
     menuButton.image = menu
     menuButton.scale = (canvasHeight/128)
     menuButton.opacity = 0 
     
-    restartButton = new Sprite(camera.x - (canvasHeight/5),1000000000,15,15,'k')
+    restartButton = new deletes.Sprite(camera.x - (canvasHeight/5),1000000000,15,15,'k')
     restartButton.image = restart
     restartButton.scale = (canvasHeight/128)
     restartButton.opacity = 0
@@ -730,7 +734,7 @@ function textMaker() {
 		pos += 2
 		back += 1
 		front += 1
-        tex = new Sprite(pos * (canvasHeight/32) - ((textTrack.length+1)/2 * 
+        tex = new deletes.Sprite(pos * (canvasHeight/32) - ((textTrack.length+1)/2 * 
             (canvasHeight/16)) +  camera.x,camera.y - (canvasHeight/256) * 16, 7, 7, 'n');
         tex.spriteSheet = letter
         tex.addAni({w:9, h:7, row:0, col:track })

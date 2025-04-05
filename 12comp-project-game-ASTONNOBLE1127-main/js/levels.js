@@ -43,11 +43,11 @@ function levelScreen() {
 
 function levelSensors() {
     if(lvl1.mouse.presses()) {
-        allSprites.remove()
+        deletes.removeAll(); 
         level1()
         gameState = 'game'
     } else if(lvl2.mouse.presses()) {
-        allSprites.remove()
+        deletes.removeAll(); 
         level2()
         gameState = 'game'
     }

@@ -59,7 +59,7 @@ function gameRun() {
 
     //game over
     if (restartButton.mouse.presses() && (health < 0 || win == true)) {
-        allSprites.remove(); 
+        deletes.removeAll(); 
         if (level == 0) {
             tutorial()
         } else if (level == 1) {
@@ -72,14 +72,13 @@ function gameRun() {
     }
 
     if (menuButton.mouse.presses() && (health < 0 || win == true)) {
-        allSprites.remove(); 
+        deletes.removeAll(); 
         startScreen(); 
         gameState = 'start'
     }
 
     //attacks
     player.overlapping(enemys, canAtk)
-    //if (mouse.presses() && stabbing == false && (health > 0 && win == false)) {stab();}
 
     //movement
     player.x = hitbox.x
@@ -113,66 +112,11 @@ function gameRun() {
             hitbox.drag = 10000000
         } else {hitbox.drag = 0}
 
-        //wolfs
-        for (let i = 0; i < wolfCount; i++) {
-            if (player.overlapping(wolf[i]) && wolf[i].health > 0 && wolfAtking == false) {
-                if (player.x > wolf[i].x) {
-                        wolf[i].scale.x = -(canvasHeight/520);
-                } else if (player.x < wolf[i].x) {
-                    wolf[i].scale.x = (canvasHeight/520);
-                }
-                l = i; wolfAtk();
-            }
-        }
-
-
-        for (let i = 0; i < wolfCount; i++) {
-            if (((dist(player.x, player.y, wolf[i].x, wolf[i].y)) > 100) && 
-            (300 > (dist(player.x, player.y, wolf[i].x, wolf[i].y)))) {
-                if (player.x > wolf[i].x) {
-                    wolf[i].scale.x = -(canvasHeight/520);
-                    direction = 1; 
-                    wolf[i].vel.y = wolf[i].vel.y - 0.1;
-                } else if (player.x < wolf[i].x) {
-                    wolf[i].scale.x = (canvasHeight/520); 
-                    direction = -1; 
-                    wolf[i].vel.y = wolf[i].vel.y - 0.1;
-                }
-                L = i; wolfRun();
-            } else if (wolfAtking == false) {
-                wolf[i].changeAni('idle');
-            }
-        }
-
-        //golems
-        for (let i = 0; i < golemCount; i++) {
-            golemHit[i].opacity = 0 
-            golem[i].x = golemHit[i].x
-            golem[i].y = golemHit[i].y// - ((canvasHeight/80))
-            if (player.overlapping(golem[i]) && golem[i].health > 0 && golemAtking == false) {
-                if (player.x > golem[i].x) {
-                    golem[i].scale.x = (canvasHeight/300);
-                } else if (player.x < golem[i].x) {
-                    golem[i].scale.x = -(canvasHeight/300);
-                }
-                l = i; golemAtk();
-            }
-        }
-
-
+        //enemys
         for (let i = 0; i < golemCount; i++) {
             if (((dist(player.x, player.y, golem[i].x, golem[i].y)) > 140) && 
             (300 > (dist(player.x, player.y, golem[i].x, golem[i].y)))) {
-                if (player.x > golem[i].x) {
-                    golem[i].scale.x = (canvasHeight/300);
-                    direction = 1; 
-                    golemHit[i].vel.y = golemHit[i].vel.y - 0.1;
-                } else if (player.x < golem[i].x) {
-                    golem[i].scale.x = -(canvasHeight/300); 
-                    direction = -1; 
-                    golemHit[i].vel.y = golemHit[i].vel.y - 0.1;
-                }
-                L = i; golemRun();
+                ERun(golem[i]);
             } else if (golemAtking == false) {
                 golem[i].changeAni('idle');
             }
