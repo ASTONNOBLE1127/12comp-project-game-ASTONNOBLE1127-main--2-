@@ -6,9 +6,9 @@
 
 class enemy {
     constructor(spriteImg,HP,DMG,Scale,w,h,anis,Type,offsetY,trigdist,atkdist) {
-        this.name = new enemys.Sprite(50,50)
+        this.name = new enemys.Sprite(80,432)
         this.name.spriteSheet = spriteImg
-        this.name.hp = HP
+        this.name.health = HP
         this.name.dmg = DMG
         this.name.w = w
         this.name.h = h
@@ -41,7 +41,7 @@ async function ERun(enemy) {
 }
 async function EAtk(enemy) {
     Atking = true
-    Ani = true
+    Anim = true
     await enemy.changeAni('attack')
     await enemy.changeAni('idle')
     if (enemy.overlapping(player) && enemy.health > 0) {
@@ -49,15 +49,17 @@ async function EAtk(enemy) {
         health--
     }
     updateHealth()
-    Ani = false
+    Anim = false
     await delay(1500)
     Atking = false
 }
 async function EHurt(enemy) {
+    console.log(enemy.health)
     enemy.health-= playerDamage
     if (enemy.health > 0 && Ani == false) {
         await enemy.changeAni('hurt'); 
         enemy.changeAni('idle');
+        console.log('hit')
     }
     if (enemy.health <= 0 ) {
         EDeath(enemy);
@@ -70,6 +72,30 @@ async function EDeath(enemy) {
     enemyCount--
     health++
     updateHealth()
+}
+function canAtk(player, enemy) {
+    if (stabbing == false) {
+        if (mouse.presses()) {
+            EHurt(enemy)
+            console.log('hit')
+            PAtk()
+        }
+    }
+}
+async function PAtk() {
+    stabbing = true
+    cooldown = true
+    if (level == 0) {
+        if (player.overlapping(chest)) {
+            chest.changeAni('opened'); 
+            artifactFound = true
+        }
+    }
+    await player.changeAni('stab')
+    player.changeAni('idle')
+    cooldown = false
+    await delay(500)
+    stabbing = false
 }
 
 class climbs {

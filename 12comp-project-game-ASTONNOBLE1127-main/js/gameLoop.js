@@ -78,7 +78,8 @@ function gameRun() {
     }
 
     //attacks
-    if (mouse.presses() && stabbing == false && (health > 0 && win == false)) {stab();}
+    player.overlapping(enemys, canAtk)
+    //if (mouse.presses() && stabbing == false && (health > 0 && win == false)) {stab();}
 
     //movement
     player.x = hitbox.x
