@@ -217,7 +217,7 @@ function gameuni() {
 /******************************************************/
 
 function golemMaker() {
-    for (let i = 0; i < 1; i++) {
+    for (let i = 0; i < golemCount; i++) {
         let track = GOLEMSPAWN[level].slice(i * 6, i * 6 + 3)
         track = Number(track)
         let track2 = GOLEMSPAWN[level].slice(i * 6 + 3, i * 6 + 6)
@@ -235,27 +235,15 @@ function golemMaker() {
 /******************************************************/
 
 function wolfMaker() {
-    for (let i = 0; i < (wolfCount); i++) {
+    for (let i = 0; i < wolfCount; i++) {
         let track = WOLFSPAWN[level].slice(i * 6, i * 6 + 3)
         track = Number(track)
         let track2 = WOLFSPAWN[level].slice(i * 6 + 3, i * 6 + 6)
         track2 = Number(track2)
-        console.log(track,track2)
-        wolf[i] = new Sprite(((canvasHeight/256) * 16 * track),(canvasHeight/256) * 16 * track2,64,64,'d')
-        wolf[i].spriteSheet = wolfSheet
-        wolf[i].addAnis({
-            idle: {row: 0 , frames: 6},
-            attack: {row: 1 , frames: 5},
-            hurt: {row: 2 , frames: 4},
-            death: {row: 3 , frames: 7, frameDelay: 14},
-            run: {row: 1 , frames: 5, frameDelay: 9}
-        })
-        wolf[i].changeAni('idle')
-        wolf[i].scale = ((canvasHeight/530))
-        wolf[i].drag = 3
-        wolf[i].friction = 0
-        wolf[i].vel.y = 7
-        wolf[i].health = 3
+        golem[i + 10].vel.y = 0
+        golem[i + 10].health = golem[i + 10].maxHealth
+        golem[i + 10].x = track * (canvasHeight/16)
+        golem[i + 10].y = track2 * (canvasHeight/16)
     }
 }
 

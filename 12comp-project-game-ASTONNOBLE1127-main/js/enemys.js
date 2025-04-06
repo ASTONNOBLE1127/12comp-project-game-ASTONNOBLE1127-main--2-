@@ -6,7 +6,7 @@
 
 
 class enemy {
-    constructor(spriteImg,HP,DMG,Scale,w,h,anis,Type,offsetY,trigdist,atkdist,del) {
+    constructor(spriteImg,HP,DMG,Scale,w,h,anis,Type,offsetY,trigdist,atkdist,del,xInvert) {
         this.name = new enemys.Sprite(800,432)
         this.name.spriteSheet = spriteImg
         this.name.maxHealth = HP
@@ -17,10 +17,13 @@ class enemy {
         this.name.addAnis(anis)
         this.name.del = del
         golem.push(this.name)
+        this.name.anis.offset.y = offsetY
         this.name.changeAni('idle')
-        this.name.offset.y = offsetY
         this.name.scale = Scale
+        this.name.scal = Scale * xInvert
+        this.name.scale.x = Scale * xInvert
         this.name.type = Type
+        this.name.rotationLock = true
     }
 }
 async function ERun(enemy) {
@@ -28,8 +31,8 @@ async function ERun(enemy) {
         direction = 1; 
     } else if (player.x < enemy.x) { 
         direction = -1;    
-    }
-    enemy.scale.x = (canvasHeight/300) * direction
+    } //+enemy.scale
+    enemy.scale.x = enemy.scal * direction
     enemy.vel.x = (direction * canvasHeight/288)
     await enemy.changeAni('run')
     enemy.changeAni('idle')

@@ -113,10 +113,17 @@ function gameRun() {
         } else {hitbox.drag = 0}
 
         //enemys
-        for (let i = 0; i < 1; i++) {
+        for (let i = 0; i < golemCount; i++) {
             if (((dist(player.x, player.y, golem[i].x, golem[i].y)) > 140) && 
             (300 > (dist(player.x, player.y, golem[i].x, golem[i].y)))) {
                 ERun(golem[i]);
+            }
+        }
+        
+        for (let i = 0; i < wolfCount; i++) {
+            if (((dist(player.x, player.y, golem[i + 10].x, golem[i + 10].y)) > 140) && 
+            (300 > (dist(player.x, player.y, golem[i + 10].x, golem[i + 10].y)))) {
+                ERun(golem[i + 10]);
             }
         }
     }
