@@ -222,10 +222,11 @@ function golemMaker() {
         track = Number(track)
         let track2 = GOLEMSPAWN[level].slice(i * 6 + 3, i * 6 + 6)
         track2 = Number(track2)
-        golem[i].vel.y = 0
+        golem[i].vel.y = 0.1
         golem[i].health = golem[i].maxHealth
         golem[i].x = track * (canvasHeight/16)
         golem[i].y = track2 * (canvasHeight/16)
+        golem[i].collider = 'd'
     }
 }
 
@@ -244,6 +245,7 @@ function wolfMaker() {
         golem[i + 10].health = golem[i + 10].maxHealth
         golem[i + 10].x = track * (canvasHeight/16)
         golem[i + 10].y = track2 * (canvasHeight/16)
+        golem[i + 10].collider = 'd'
     }
 }
 
@@ -554,131 +556,6 @@ async function death() {
     if (stars > scoreTotal[level]) {
         scoreTotal[level] = stars
     }
-}
-
-/******************************************************/
-//enemys
-/******************************************************/
-
-/******************************************************/
-//wolfDeath()
-//makes the wolf die
-/******************************************************/
-
-async function wolfDeath() {
-    await wolf[I].changeAni('hurt')
-    await wolf[I].changeAni('death')
-    wolf[I].x = 1000000
-    enemyCount--
-    health++
-    updateHealth() 
-}
-
-/******************************************************/
-//wolfAtk()
-//makes the wolf attack
-/******************************************************/
-
-async function wolfAtk() {
-    wolfAtking = true
-    wolfAni = true
-    await wolf[l].changeAni('attack')
-    await wolf[l].changeAni('idle')
-    if (wolf[l].overlapping(player) && wolf[l].health > 0) {
-        health--;
-    }
-    updateHealth()
-    wolfAni = false
-    await delay(1000)
-    wolfAtking = false
-}
-
-/******************************************************/
-//wolfHurt()
-//run on wolf hurt
-/******************************************************/
-
-async function wolfHurt() {
-    wolf[I].health-= playerDamage
-    if (wolf[I].health > 0 && wolfAni == false) {
-        await wolf[I].changeAni('hurt'); 
-        wolf[I].changeAni('idle');
-    }
-    if (wolf[I].health <= 0 ) {
-        wolfDeath();
-    }
-}
-
-/******************************************************/
-//wolfRun()
-//makes the wolf run
-/******************************************************/
-
-async function wolfRun() {
-    wolf[L].vel.x = (direction * 2)
-    await wolf[L].changeAni('run')
-    wolf[L].changeAni('idle')
-}
-
-/******************************************************/
-//golemDeath()
-//makes the golem die
-/******************************************************
-
-async function golemDeath() {
-    await golem[I].changeAni('hurt')
-    await golem[I].changeAni('death')
-    golemHit[I].x = 1000000
-    enemyCount--
-    health++
-    updateHealth()
-}
-
-/******************************************************/
-//golemAtk()
-//makes the golem attack
-/******************************************************
-
-async function golemAtk() {
-    golemAtking = true
-    golAni = true
-    await golem[l].changeAni('attack')
-    await golem[l].changeAni('idle')
-    if (golem[l].overlapping(player) && golem[l].health > 0) {
-        health--
-        health--
-    }
-    updateHealth()
-    golAni = false
-    await delay(1500)
-    golemAtking = false
-}
-
-/******************************************************/
-//golemHurt()
-//run on golem hurt
-/******************************************************
-
-async function golemHurt() {
-    golem[I].health-= playerDamage
-    if (golem[I].health > 0 && golAni == false) {
-        await golem[I].changeAni('hurt'); 
-        golem[I].changeAni('idle');
-    }
-    if (golem[I].health <= 0 ) {
-        golemDeath();
-    }
-}
-
-/******************************************************/
-//golemRun()
-//makes the golem run
-/******************************************************
-
-async function golemRun() {
-    golemHit[L].vel.x = (direction * 2)
-    await golem[L].changeAni('run')
-    golem[L].changeAni('idle')
 }
 
 /******************************************************/

@@ -18,8 +18,11 @@ function setup() {
     canvasHeight = (16 * Math.floor(windowHeight / 16 - 1));
     cnv = new Canvas(canvasHeight, canvasHeight);
     world.gravity.y = 10;
+    allSprites.autoCull = false
     uni()
     startScreen()
+
+    //defines the golems
     for (let i = 0; i < 10; i++) {
       golemsed[i] = new enemy(golemSheet, 5, 2, (canvasHeight/300), 40, 40, {
             idle: {row: 3 , frames: 8 , w:90, h:64},
@@ -30,6 +33,7 @@ function setup() {
         },'golem',-12, 300,140,1.5,1)
     }
     
+    //defines the wolves
     for (let i = 10; i < 20; i++) {
         golemsed[i] = new enemy(wolfSheet, 3, 1, (canvasHeight/530), 64, 32, {
             idle: {row: 0 , frames: 6, w:64, h:64},
@@ -37,7 +41,7 @@ function setup() {
             hurt: {row: 2 , frames: 4, w:64, h:64},
             death: {row: 3 , frames: 7, w:64, h:64, frameDelay: 14},
             run: {row: 1 , frames: 5, w:64, h:64, frameDelay: 9}
-        },'golem',-16, 300,140,1,-1)
+        },'golem',-16, 300,140,2,-1)
       }
 }
 /***********************************************************/

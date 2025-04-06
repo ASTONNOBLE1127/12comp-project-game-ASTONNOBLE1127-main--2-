@@ -7,7 +7,7 @@
 
 class enemy {
     constructor(spriteImg,HP,DMG,Scale,w,h,anis,Type,offsetY,trigdist,atkdist,del,xInvert) {
-        this.name = new enemys.Sprite(800,432)
+        this.name = new enemys.Sprite(-80000,432)
         this.name.spriteSheet = spriteImg
         this.name.maxHealth = HP
         this.name.health = HP
@@ -24,19 +24,38 @@ class enemy {
         this.name.scale.x = Scale * xInvert
         this.name.type = Type
         this.name.rotationLock = true
+        this.name.collider = 'n'
     }
 }
-async function ERun(enemy) {
-    if (player.x > enemy.x) {
-        direction = 1; 
-    } else if (player.x < enemy.x) { 
-        direction = -1;    
-    } //+enemy.scale
-    enemy.scale.x = enemy.scal * direction
-    enemy.vel.x = (direction * canvasHeight/288)
-    await enemy.changeAni('run')
-    enemy.changeAni('idle')
+
+/******************************************************/
+//enemys functions
+/******************************************************/
+
+/******************************************************/
+//EDeath()
+//makes the wolf die
+//input(enemy)
+//output(N/A)
+/******************************************************/
+
+async function EDeath(enemy) {
+    await enemy.changeAni('hurt')
+    await enemy.changeAni('death')
+    enemy.x = 1000000
+    enemy.collider = 'n'
+    enemyCount--
+    health++
+    updateHealth()
 }
+
+/******************************************************/
+//EAtk()
+//makes the wolf attack
+//input(enemy)
+//output(N/A)
+/******************************************************/
+
 async function EAtk(enemy) {
     Atking = true
     Anim = true
@@ -50,6 +69,14 @@ async function EAtk(enemy) {
     await delay(enemy.del * 100)
     Atking = false
 }
+
+/******************************************************/
+//EHurt()
+//run on wolf hurt
+//input(enemy)
+//output(enemy)
+/******************************************************/
+
 async function EHurt(enemy) {
     console.log(enemy.health)
     enemy.health-= playerDamage
@@ -62,14 +89,27 @@ async function EHurt(enemy) {
         EDeath(enemy);
     }
 }
-async function EDeath(enemy) {
-    await enemy.changeAni('hurt')
-    await enemy.changeAni('death')
-    enemy.x = 1000000
-    enemyCount--
-    health++
-    updateHealth()
+
+/******************************************************/
+//ERun()
+//makes the wolf run
+//input(enemy)
+//output(N/A)
+/******************************************************/
+
+async function ERun(enemy) {
+    if (player.x > enemy.x) {
+        direction = 1; 
+    } else if (player.x < enemy.x) { 
+        direction = -1;    
+    } //+enemy.scale
+    enemy.scale.x = enemy.scal * direction
+    enemy.vel.x = (direction * canvasHeight/288)
+    await enemy.changeAni('run')
+    enemy.changeAni('idle')
 }
+
+
 
 
 function canAtk(player, enemy) {
