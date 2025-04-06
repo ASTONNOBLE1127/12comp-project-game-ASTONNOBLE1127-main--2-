@@ -281,6 +281,7 @@ function healthbarMaker() {
 function playerMaker() {
     player.x = PLAYERPOINT[level*2] * (canvasHeight/16)
     player.y = PLAYERPOINT[level*2+1] * (canvasHeight/16)
+    player.collider = 'd'
 }
                                              
 /******************************************************/
@@ -348,38 +349,6 @@ function starMaker() {
 //gameloop functions
 //
 /******************************************************/
-
-/******************************************************/
-//stab()
-//makes the player stab
-/******************************************************/
-
-async function stab() {
-    stabbing = true
-    cooldown = true
-    for (let i = 0; i < wolfCount; i++) {
-        if (player.overlapping(wolf[i])) {
-            I = i; wolfHurt(); break;
-        }
-    }
-    for (let i = 0; i < golemCount; i++) {
-        if (player.overlapping(enemy[i])) {
-            I = i; golemHurt(); break;
-        }
-    }
-    if (level == 0) {
-        if (player.overlapping(chest)) {
-            chest.changeAni('opened'); 
-            artifactFound = true
-        }
-    }
-    await player.changeAni('stab')
-    player.changeAni('idle')
-    cooldown = false
-    await delay(500)
-    stabbing = false
-
-}
 
 /******************************************************/
 //updateHealth()
@@ -486,6 +455,7 @@ async function death(player) {
  async function finish(textTrack) {
     await delay(2000)
     player.vel.x = 0; 
+    player.collider = 'n'
     ends.x = camera.x
     ends.y = camera.y
     allSprites.opacity = 0.5

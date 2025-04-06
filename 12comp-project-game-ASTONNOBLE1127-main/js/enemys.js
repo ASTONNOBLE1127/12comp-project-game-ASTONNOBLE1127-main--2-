@@ -139,7 +139,7 @@ async function PAtk(player) {
 }
 class players {
     constructor(spriteImg,HP,DMG,Scale,w,h,anis,offsetX,offsetY,del) {
-        this.name = new player.Sprite(100,100)
+        this.name = new player.Sprite(-1000000,100)
         this.name.spriteSheet = spriteImg
         this.name.health = HP
         this.name.dmg = DMG
@@ -152,5 +152,6 @@ class players {
         this.name.del = del
         this.name.scale = Scale
         this.name.debug = true
+        this.name.collider = 'n'
     }
 } 
