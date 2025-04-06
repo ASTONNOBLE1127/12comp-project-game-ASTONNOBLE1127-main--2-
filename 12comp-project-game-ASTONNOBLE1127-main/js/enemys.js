@@ -78,14 +78,12 @@ async function EAtk(enemy) {
 /******************************************************/
 
 async function EHurt(enemy) {
-    console.log(enemy.health)
     enemy.health-= playerDamage
     if (enemy.health > 0 && Anim == false) {
         await enemy.changeAni('hurt'); 
         enemy.changeAni('idle');
-        console.log('hit')
     }
-    if (enemy.health <= 0 ) {
+    if (enemy.health <= 0) {
         EDeath(enemy);
     }
 }
@@ -113,15 +111,15 @@ async function ERun(enemy, player) {
 
 
 function canAtk(player, enemy) {
+    if (Atking == false) {
+        EAtk(enemy)
+    }
     if (stabbing == false) {
         if (mouse.presses()) {
             EHurt(enemy)
             console.log('hit')
             PAtk(player)
         }
-    }
-    if (Atking == false) {
-        EAtk(enemy)
     }
 }
 async function PAtk(player) {
