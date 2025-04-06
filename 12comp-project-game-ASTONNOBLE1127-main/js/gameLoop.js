@@ -120,7 +120,7 @@ function gameRun(player) {
         for (let i = 0; i < wolfCount; i++) {
             if (((dist(player.x, player.y, enemy[i + 10].x, enemy[i + 10].y)) > 140) && 
             (300 > (dist(player.x, player.y, enemy[i + 10].x, enemy[i + 10].y)))) {
-                ERun(enemy[i + 10]);
+                ERun(enemy[i + 10], player);
             }
         }
     }

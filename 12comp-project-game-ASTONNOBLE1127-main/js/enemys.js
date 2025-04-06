@@ -97,14 +97,14 @@ async function EHurt(enemy) {
 //output(N/A)
 /******************************************************/
 
-async function ERun(enemy) {
+async function ERun(enemy, player) {
     if (player.x > enemy.x) {
         direction = 1; 
     } else if (player.x < enemy.x) { 
         direction = -1;    
-    } //+enemy.scale
+    }
     enemy.scale.x = enemy.scal * direction
-    enemy.vel.x = (direction * canvasHeight/288)
+    enemy.vel.x = (direction * (canvasHeight/288))
     await enemy.changeAni('run')
     enemy.changeAni('idle')
 }
