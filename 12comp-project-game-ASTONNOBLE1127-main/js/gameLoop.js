@@ -11,7 +11,7 @@
 //runs the game
 /*******************************************************/
 
-function gameRun() {
+function gameRun(player) {
     //artifacts
     if (level == 1) {
         if (player.overlapping(goldKey)) { 
@@ -31,10 +31,9 @@ function gameRun() {
     background(bgC) 
     camera.x = player.x
     camera.y = player.y - (canvasHeight/6)
-    if (hitbox.overlapping(door) && win == false) {
+    if (player.overlapping(door) && win == false) {
         win = true;
         door.changeAni('open'); 
-        player.remove(); 
         xVel = 0; 
         won(); 
     }
@@ -50,10 +49,10 @@ function gameRun() {
         }
     }
     healthbar()
-    if (0.1 > health && health > -5) {health = health - 1000; death();}
+    if (0.1 > health && health > -5) {health = health - 1000; death(player);}
 
     //damage
-    if (player.overlaps(spikes)) {
+    if (player.overlapping(spikes)) {
         if (spiked == false) {health--; spiked = true; updateHealth();}
     } else {spiked = false;}
 
@@ -81,49 +80,47 @@ function gameRun() {
     player.overlapping(enemys, canAtk)
 
     //movement
-    player.x = hitbox.x
-    player.y = hitbox.y - (canvasHeight/50)
-    if (hitbox.overlapping(hopBlock)) {hops = true;}
-    if (kb.presses(' ') && hitbox.colliding(
+    if (player.overlapping(hopBlock)) {hops = true;}
+    if (kb.presses(' ') && player.colliding(
         bricks) && (health > 0 && win == false) && (
         jumping == false || hops == true)) {
         hops = false; 
-        hitbox.vel.y =-6; 
-        jump();
+        player.vel.y =-6; 
+        jump(player);
     }
     if (kb.pressing('right') && (health > 0 && win == false)) {
         if (xVel < 21) {xVel = xVel + 3;} 
-        walkEast();
+        walkEast(player);
     } else if (kb.pressing('left') && (health > 0 && win == false)) {
         if (xVel > -21) {xVel = xVel - 3;}
-        walkWest();
+        walkWest(player);
     } else if (xVel > 0) {xVel = xVel - 1.5;
     } else if (xVel < 0) {xVel = xVel + 1.5;}
 
     //climbing
     if (health > 0.5 && win == false) {
-        hitbox.vel.x = xVel / 10
-        if (hitbox.overlapping(climb) && kb.pressing('up')) {
-            hitbox.vel.y = -2.5; 
-            hitbox.drag = 0; 
-            climbing();
-        } else if (hitbox.overlapping(climb) && hitbox.vel.y >= 0 && !(
+        player.vel.x = xVel / 10
+        if (player.overlapping(climb) && kb.pressing('up')) {
+            player.vel.y = -2.5; 
+            player.drag = 0; 
+            climbing(player);
+        } else if (player.overlapping(climb) && player.vel.y >= 0 && !(
         kb.pressing('right') || kb.pressing('left') || kb.pressing('down'))) {
-            hitbox.drag = 10000000
-        } else {hitbox.drag = 0}
+            player.drag = 10000000
+        } else {player.drag = 0}
 
-        //enemys
+        //enemys movement
         for (let i = 0; i < golemCount; i++) {
-            if (((dist(player.x, player.y, golem[i].x, golem[i].y)) > 140) && 
-            (300 > (dist(player.x, player.y, golem[i].x, golem[i].y)))) {
-                ERun(golem[i]);
+            if (((dist(player.x, player.y, enemy[i].x, enemy[i].y)) > 140) && 
+            (300 > (dist(player.x, player.y, enemy[i].x, enemy[i].y)))) {
+                ERun(enemy[i]);
             }
         }
         
         for (let i = 0; i < wolfCount; i++) {
-            if (((dist(player.x, player.y, golem[i + 10].x, golem[i + 10].y)) > 140) && 
-            (300 > (dist(player.x, player.y, golem[i + 10].x, golem[i + 10].y)))) {
-                ERun(golem[i + 10]);
+            if (((dist(player.x, player.y, enemy[i + 10].x, enemy[i + 10].y)) > 140) && 
+            (300 > (dist(player.x, player.y, enemy[i + 10].x, enemy[i + 10].y)))) {
+                ERun(enemy[i + 10]);
             }
         }
     }

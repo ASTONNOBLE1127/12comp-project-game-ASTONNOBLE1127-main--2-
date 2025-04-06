@@ -69,7 +69,7 @@ var Atking = false
 var Anim = false
 var enemyCount = 0
 var wolf = []
-var golem = []
+var enemy = []
 var golemHit = []
 var direction = 1
 const WOLFSPAWN = ['045009','005040008040010009016009080001','']
@@ -87,10 +87,6 @@ var scoreTotal = [0,0,0,0,0,0,0,0,0,0]
 const TEXTARRAY = ['you lose', 'you win']
 
 //tracking
-var I
-var l
-var L
-var textTrack
 var heartCount = 0
 var textScale
 
@@ -110,6 +106,7 @@ function uni() {
     spikes = new deletes.Group()
     climb = new deletes.Group()
     enemys = new Group()
+    player =  new Group()
     words = new deletes.Group()
 
 
@@ -176,9 +173,6 @@ function gameuni() {
     //all sprites fixing
     spriteFixing()
 
-    //hitbox for player
-    hitboxMaker()
-
     //healthbar for player
     healthbarMaker()
 
@@ -222,11 +216,11 @@ function golemMaker() {
         track = Number(track)
         let track2 = GOLEMSPAWN[level].slice(i * 6 + 3, i * 6 + 6)
         track2 = Number(track2)
-        golem[i].vel.y = 0.1
-        golem[i].health = golem[i].maxHealth
-        golem[i].x = track * (canvasHeight/16)
-        golem[i].y = track2 * (canvasHeight/16)
-        golem[i].collider = 'd'
+        enemy[i].vel.y = 0.1
+        enemy[i].health = enemy[i].maxHealth
+        enemy[i].x = track * (canvasHeight/16)
+        enemy[i].y = track2 * (canvasHeight/16)
+        enemy[i].collider = 'd'
     }
 }
 
@@ -241,11 +235,11 @@ function wolfMaker() {
         track = Number(track)
         let track2 = WOLFSPAWN[level].slice(i * 6 + 3, i * 6 + 6)
         track2 = Number(track2)
-        golem[i + 10].vel.y = 0
-        golem[i + 10].health = golem[i + 10].maxHealth
-        golem[i + 10].x = track * (canvasHeight/16)
-        golem[i + 10].y = track2 * (canvasHeight/16)
-        golem[i + 10].collider = 'd'
+        enemy[i + 10].vel.y = 0
+        enemy[i + 10].health = enemy[i + 10].maxHealth
+        enemy[i + 10].x = track * (canvasHeight/16)
+        enemy[i + 10].y = track2 * (canvasHeight/16)
+        enemy[i + 10].collider = 'd'
     }
 }
 
@@ -264,19 +258,6 @@ function spriteFixing() {
 }
 
 /******************************************************/
-//hitboxMaker()
-//makes the hitbox for the player
-/******************************************************/
-
-function hitboxMaker() {    
-    hitbox = new Sprite((canvasHeight/16)* PLAYERPOINT[level*2],(canvasHeight/16)* PLAYERPOINT[level*2+1],28,50,'d')
-    hitbox.scale = (canvasHeight/600)
-    hitbox.friction = 0
-    hitbox.opacity = 0
-}
-
-
-/******************************************************/
 //healthbarMaker()
 //makes the healthbar for the player
 /******************************************************/
@@ -293,27 +274,13 @@ function healthbarMaker() {
 /******************************************************/
 //playerMaker()
 //makes the player
+ //   player.friction = 0
+  //  player.opacity = 0
 /******************************************************/
 
 function playerMaker() {
-    playerSheet.resize =(1240,3072)
-    player = new Sprite(40,40,32,32,'n');
-    player.spriteSheet = playerSheet;
-    player.anis.offset.x = 2
-    player.addAnis({
-        jump: { row: 1, frames: 6, frameDelay: 10 },
-        death: { row: 14, frames: 7, frameDelay: 10 },
-        walk: { row: 0, frames: 8 },
-        idle: { row: 1, frames: 1 },
-        dead: {w:32, h:32, col:6, row:14 },
-        stab: { row: 12, frames: 10 }, 
-        slash: { row: 11, frames: 10 },
-        swing: { row: 10, frames: 10 },
-        climb: { row: 4, frames: 8, frameDelay: 10},
-        clim: {w:32, h:32, col:1, row:4 }
-    });
-    player.scale = (canvasHeight/256);
-    player.changeAni('idle')
+    player.x = PLAYERPOINT[level*2] * (canvasHeight/16)
+    player.y = PLAYERPOINT[level*2+1] * (canvasHeight/16)
 }
                                              
 /******************************************************/
@@ -396,7 +363,7 @@ async function stab() {
         }
     }
     for (let i = 0; i < golemCount; i++) {
-        if (player.overlapping(golem[i])) {
+        if (player.overlapping(enemy[i])) {
             I = i; golemHurt(); break;
         }
     }
@@ -435,7 +402,7 @@ function updateHealth() {
 //makes the player walk west
 /******************************************************/
 
-async function walkWest() {
+async function walkWest(player) {
     player.scale.x = -(canvasHeight/256);
     if (cooldown == false) {
         await player.changeAni('walk')
@@ -448,7 +415,7 @@ async function walkWest() {
 //makes the player walk east
 /******************************************************/
 
-async function walkEast() {
+async function walkEast(player) {
     player.scale.x = (canvasHeight/256);
     if (cooldown == false) {
         await player.changeAni('walk')
@@ -461,7 +428,7 @@ async function walkEast() {
 //makes the player jump
 /******************************************************/
 
-async function jump() {
+async function jump(player) {
     jumping = true
     await player.changeAni('jump')
     player.changeAni('idle')
@@ -474,7 +441,7 @@ async function jump() {
 //makes the player climb
 /******************************************************/
 
-async function climbing() {
+async function climbing(player) {
     await player.changeAni('climb')
     player.changeAni('clim')
 }
@@ -488,15 +455,14 @@ async function climbing() {
 //runs on player death
 /******************************************************/
 
-async function death() {
+async function death(player) {
     xVel = 0
-    hitbox.vel.x = 0
-    hitbox.vel.y = 0
-    hitbox.collider = 'n'
+    player.vel.x = 0
+    player.vel.y = 0
+    player.collider = 'n'
     await player.changeAni('death')
     player.changeAni('dead')
-    textTrack = TEXTARRAY[0]
-    finish()
+    finish(TEXTARRAY[0])
 }
 
 /******************************************************/
@@ -506,11 +472,10 @@ async function death() {
 
  function won() {
     xVel = 0
-    hitbox.vel.x = 0
-    hitbox.vel.y = 0
-    hitbox.collider = 'n'
-    textTrack = TEXTARRAY[1]
-    finish()
+    player.vel.x = 0
+    player.vel.y = 0
+    player.collider = 'n'
+    finish(TEXTARRAY[1])
  }
 
 /******************************************************/
@@ -518,16 +483,16 @@ async function death() {
 //runs on level finish
 /******************************************************/
 
- async function finish() {
+ async function finish(textTrack) {
     await delay(2000)
-    hitbox.vel.x = 0; 
+    player.vel.x = 0; 
     ends.x = camera.x
     ends.y = camera.y
     allSprites.opacity = 0.5
     hopBlock.opacity = 0
     ends.opacity = 1
     textScale = (canvasHeight/100)
-    textMaker()
+    textMaker(textTrack)
     menuButton.x = camera.x + (canvasHeight/5)
     menuButton.y = camera.y + (canvasHeight/4)
     restartButton.x = camera.x - (canvasHeight/5)
@@ -576,7 +541,7 @@ function healthbar() {
 //uses a placeholder from TEXTARRAY
 /******************************************************/
 
-function textMaker() {
+function textMaker(textTrack) {
 	let back = 0
 	let front = 1
 	let pos = 0

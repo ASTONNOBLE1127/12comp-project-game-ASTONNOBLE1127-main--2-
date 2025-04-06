@@ -5,7 +5,7 @@
 /**********************************************************/
 
 
-class enemy {
+class Enemy {
     constructor(spriteImg,HP,DMG,Scale,w,h,anis,Type,offsetY,trigdist,atkdist,del,xInvert) {
         this.name = new enemys.Sprite(-80000,432)
         this.name.spriteSheet = spriteImg
@@ -16,7 +16,7 @@ class enemy {
         this.name.h = h
         this.name.addAnis(anis)
         this.name.del = del
-        golem.push(this.name)
+        enemy.push(this.name)
         this.name.anis.offset.y = offsetY
         this.name.changeAni('idle')
         this.name.scale = Scale
@@ -117,14 +117,14 @@ function canAtk(player, enemy) {
         if (mouse.presses()) {
             EHurt(enemy)
             console.log('hit')
-            PAtk()
+            PAtk(player)
         }
     }
     if (Atking == false) {
         EAtk(enemy)
     }
 }
-async function PAtk() {
+async function PAtk(player) {
     stabbing = true
     cooldown = true
     if (level == 0) {
@@ -140,8 +140,8 @@ async function PAtk() {
     stabbing = false
 }
 class players {
-    constructor(spriteImg,HP,DMG,Scale,w,h,anis,offsetX,offsetY) {
-        this.name = new Sprite(100,100)
+    constructor(spriteImg,HP,DMG,Scale,w,h,anis,offsetX,offsetY,del) {
+        this.name = new player.Sprite(100,100)
         this.name.spriteSheet = spriteImg
         this.name.health = HP
         this.name.dmg = DMG
@@ -151,6 +151,7 @@ class players {
         this.name.changeAni('idle')
         this.name.anis.offset.y = offsetY
         this.name.anis.offset.x = offsetX
+        this.name.del = del
         this.name.scale = Scale
         this.name.debug = true
     }

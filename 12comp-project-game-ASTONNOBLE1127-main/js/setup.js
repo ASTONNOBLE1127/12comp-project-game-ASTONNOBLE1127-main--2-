@@ -24,7 +24,7 @@ function setup() {
 
     //defines the golems
     for (let i = 0; i < 10; i++) {
-      golemsed[i] = new enemy(golemSheet, 5, 2, (canvasHeight/300), 40, 40, {
+      golemsed[i] = new Enemy(golemSheet, 5, 2, (canvasHeight/300), 40, 40, {
             idle: {row: 3 , frames: 8 , w:90, h:64},
             attack: {row: 0 , frames: 11 , w:90, h:64, frameDelay: 7},
             hurt: {row: 2 , frames: 4 , w:90, h:64, frameDelay: 14},
@@ -35,7 +35,7 @@ function setup() {
     
     //defines the wolves
     for (let i = 10; i < 20; i++) {
-        golemsed[i] = new enemy(wolfSheet, 3, 1, (canvasHeight/530), 64, 32, {
+        golemsed[i] = new Enemy(wolfSheet, 3, 1, (canvasHeight/530), 64, 32, {
             idle: {row: 0 , frames: 6, w:64, h:64},
             attack: {row: 1 , frames: 5, w:64, h:64},
             hurt: {row: 2 , frames: 4, w:64, h:64},
@@ -57,7 +57,7 @@ function draw() {
     } else if (gameState == 'levels') {
         levelSensors()
     } else if (gameState == 'game') {
-        gameRun()
+        gameRun(player[0])
     } else if (gameState == 'plane') {
         planeRun()
     } else if (gameState == 'tonk') {

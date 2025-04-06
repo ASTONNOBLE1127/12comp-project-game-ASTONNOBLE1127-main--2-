@@ -36,18 +36,18 @@ function startScreen() {
     camera.y = canvasHeight/2
     allSprites.pixelPerfect = true;
     noSmooth()
-    player2 = new players(playerSheet,10,1,(canvasHeight/256),16,32,{
-        jump: { row: 1, frames: 6, frameDelay: 10 },
-        death: { row: 14, frames: 7, frameDelay: 10 },
-        walk: { row: 0, frames: 8 },
+    player2 = new players(playerSheet,10,1,(canvasHeight/256),16,20,{
+        jump: {w:32, h:32, row: 1, frames: 6, frameDelay: 10 },
+        death: {w:32, h:32, row: 14, frames: 7, frameDelay: 10 },
+        walk: {w:32, h:32, row: 0, frames: 8 },
         idle: { row: 1, frames: 1,w:32,h:32 },
         dead: {w:32, h:32, col:6, row:14 },
-        stab: { row: 12, frames: 10 }, 
-        slash: { row: 11, frames: 10 },
-        swing: { row: 10, frames: 10 },
-        climb: { row: 4, frames: 8, frameDelay: 10},
+        stab: {w:32, h:32, row: 12, frames: 10 }, 
+        slash: {w:32, h:32, row: 11, frames: 10 },
+        swing: {w:32, h:32, row: 10, frames: 10 },
+        climb: {w:32, h:32, row: 4, frames: 8, frameDelay: 10},
         clim: {w:32, h:32, col:1, row:4 }
-    },-4,0)
+    },2,-5,0.5)
 }
 
 /***********************************************************/
