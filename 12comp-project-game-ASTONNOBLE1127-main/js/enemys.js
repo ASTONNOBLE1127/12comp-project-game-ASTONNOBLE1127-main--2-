@@ -109,8 +109,8 @@ class players {
         this.name.h = h
         this.name.addAnis(anis)
         this.name.changeAni('idle')
-        this.name.offset.y = offsetY
-        this.name.offset.x = offsetX
+        this.name.anis.offset.y = offsetY
+        this.name.anis.offset.x = offsetX
         this.name.scale = Scale
         this.name.debug = true
     }
