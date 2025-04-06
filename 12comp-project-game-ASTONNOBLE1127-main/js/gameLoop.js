@@ -110,17 +110,10 @@ function gameRun(player) {
         } else {player.drag = 0}
 
         //enemys movement
-        for (let i = 0; i < golemCount; i++) {
-            if (((dist(player.x, player.y, enemy[i].x, enemy[i].y)) > 140) && 
-            (300 > (dist(player.x, player.y, enemy[i].x, enemy[i].y)))) {
-                ERun(enemy[i], player);
-            }
-        }
-        
-        for (let i = 0; i < wolfCount; i++) {
-            if (((dist(player.x, player.y, enemy[i + 10].x, enemy[i + 10].y)) > 140) && 
-            (300 > (dist(player.x, player.y, enemy[i + 10].x, enemy[i + 10].y)))) {
-                ERun(enemy[i + 10], player);
+        for (let i = 0; i < EnemyCount.length; i++) {
+            if (((dist(player.x, player.y, enemy[EnemyCount[i]].x, enemy[EnemyCount[i]].y)) > 140) && 
+            (300 > (dist(player.x, player.y, enemy[EnemyCount[i]].x, enemy[EnemyCount[i]].y)))) {
+                ERun(enemy[EnemyCount[i]], player);
             }
         }
     }

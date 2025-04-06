@@ -76,6 +76,7 @@ const WOLFSPAWN = ['045009','005040008040010009016009080001','']
 const GOLEMSPAWN = ['','070035005009075001','']
 var wolfCount
 var golemCount
+var EnemyCount = []
 let golAni = false
 let wolfAni = false
 
@@ -159,6 +160,7 @@ function gameuni() {
     win = false
     health = 10
     bgC = '#181425'
+    EnemyCount = []
     wolfCount = WOLFSPAWN[level].length/6
     golemCount = GOLEMSPAWN[level].length/6
     enemyCount = golemCount + wolfCount
@@ -221,6 +223,7 @@ function golemMaker() {
         enemy[i].x = track * (canvasHeight/16)
         enemy[i].y = track2 * (canvasHeight/16)
         enemy[i].collider = 'd'
+        EnemyCount[EnemyCount.length] = i
     }
 }
 
@@ -240,6 +243,7 @@ function wolfMaker() {
         enemy[i + 10].x = track * (canvasHeight/16)
         enemy[i + 10].y = track2 * (canvasHeight/16)
         enemy[i + 10].collider = 'd'
+        EnemyCount[EnemyCount.length] = i + 10
     }
 }
 
