@@ -74,7 +74,7 @@ async function EAtk(enemy) {
 //EHurt()
 //run on wolf hurt
 //input(enemy)
-//output(enemy)
+//output(N/A)
 /******************************************************/
 
 async function EHurt(enemy) {

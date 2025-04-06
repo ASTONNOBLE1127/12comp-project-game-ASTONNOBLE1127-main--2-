@@ -113,7 +113,7 @@ function gameRun(player) {
         for (let i = 0; i < golemCount; i++) {
             if (((dist(player.x, player.y, enemy[i].x, enemy[i].y)) > 140) && 
             (300 > (dist(player.x, player.y, enemy[i].x, enemy[i].y)))) {
-                ERun(enemy[i]);
+                ERun(enemy[i], player);
             }
         }
         
