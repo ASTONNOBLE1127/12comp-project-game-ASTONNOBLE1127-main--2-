@@ -111,7 +111,7 @@ async function ERun(enemy, player) {
 
 
 function canAtk(player, enemy) {
-    if (Atking == false) {
+    if (Atking == false && enemy.health > 0) {
         EAtk(enemy)
     }
     if (stabbing == false) {
