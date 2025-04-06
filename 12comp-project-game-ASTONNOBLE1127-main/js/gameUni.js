@@ -274,14 +274,14 @@ function healthbarMaker() {
 /******************************************************/
 //playerMaker()
 //makes the player
- //   player.friction = 0
-  //  player.opacity = 0
 /******************************************************/
 
 function playerMaker() {
     player.x = PLAYERPOINT[level*2] * (canvasHeight/16)
     player.y = PLAYERPOINT[level*2+1] * (canvasHeight/16)
     player.collider = 'd'
+    player.rotationLock = true
+    player.friction = 0
 }
                                              
 /******************************************************/

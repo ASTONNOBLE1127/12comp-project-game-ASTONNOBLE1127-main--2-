@@ -18,8 +18,8 @@ class players {
         this.name.anis.offset.x = offsetX
         this.name.del = del
         this.name.scale = Scale
-        this.name.debug = true
         this.name.collider = 'n'
+        this.name.friction = 0
     }
 } 
 
