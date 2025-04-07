@@ -165,12 +165,8 @@ function gameuni() {
     golemCount = GOLEMSPAWN[level].length/6
     enemyCount = golemCount + wolfCount
 
-
-    //wolves
-    wolfMaker()
-
-    //golems
-    golemMaker()
+    //enemys
+    enemyMaker()
 
     //all sprites fixing
     spriteFixing()
@@ -208,42 +204,28 @@ function gameuni() {
 /******************************************************/
 
 /******************************************************/
-//golemMaker()
-//spawns the golems
+//enemyMaker()
+//spawns the enemies
 /******************************************************/
 
-function golemMaker() {
+function enemyMaker() {
     for (let i = 0; i < golemCount; i++) {
-        let track = GOLEMSPAWN[level].slice(i * 6, i * 6 + 3)
-        track = Number(track)
-        let track2 = GOLEMSPAWN[level].slice(i * 6 + 3, i * 6 + 6)
-        track2 = Number(track2)
-        enemy[i].vel.y = 0.1
-        enemy[i].health = enemy[i].maxHealth
-        enemy[i].x = track * (canvasHeight/16)
-        enemy[i].y = track2 * (canvasHeight/16)
-        enemy[i].collider = 'd'
         EnemyCount[EnemyCount.length] = i
     }
-}
-
-/******************************************************/
-//wolfMaker()
-//spawns the wolves
-/******************************************************/
-
-function wolfMaker() {
     for (let i = 0; i < wolfCount; i++) {
-        let track = WOLFSPAWN[level].slice(i * 6, i * 6 + 3)
-        track = Number(track)
-        let track2 = WOLFSPAWN[level].slice(i * 6 + 3, i * 6 + 6)
-        track2 = Number(track2)
-        enemy[i + 10].vel.y = 0
-        enemy[i + 10].health = enemy[i + 10].maxHealth
-        enemy[i + 10].x = track * (canvasHeight/16)
-        enemy[i + 10].y = track2 * (canvasHeight/16)
-        enemy[i + 10].collider = 'd'
         EnemyCount[EnemyCount.length] = i + 10
+    }
+    let enemySpawn = GOLEMSPAWN[level] + WOLFSPAWN[level]
+    for (let i = 0; i < EnemyCount.length; i++) {
+        let track = enemySpawn.slice(i * 6, i * 6 + 3)
+        track = Number(track)
+        let track2 = enemySpawn.slice(i * 6 + 3, i * 6 + 6)
+        track2 = Number(track2)
+        enemy[EnemyCount[i]].vel.y = 0.1
+        enemy[EnemyCount[i]].health = enemy[EnemyCount[i]].maxHealth
+        enemy[EnemyCount[i]].x = track * (canvasHeight/16)
+        enemy[EnemyCount[i]].y = track2 * (canvasHeight/16)
+        enemy[EnemyCount[i]].collider = 'd'
     }
 }
 
@@ -367,76 +349,8 @@ function updateHealth() {
 }
 
 /******************************************************/
-//movement
-/******************************************************/
-
-/******************************************************/
-//walkWest()
-//makes the player walk west
-/******************************************************/
-
-async function walkWest(player) {
-    player.scale.x = -(canvasHeight/256);
-    if (cooldown == false) {
-        await player.changeAni('walk')
-        player.changeAni('idle')
-    }
-}
-
-/******************************************************/
-//walkEast()
-//makes the player walk east
-/******************************************************/
-
-async function walkEast(player) {
-    player.scale.x = (canvasHeight/256);
-    if (cooldown == false) {
-        await player.changeAni('walk')
-        player.changeAni('idle')
-    }
-}
-
-/******************************************************/
-//jump()
-//makes the player jump
-/******************************************************/
-
-async function jump(player) {
-    jumping = true
-    await player.changeAni('jump')
-    player.changeAni('idle')
-    await delay(2600)
-    jumping = false
-}
-
-/******************************************************/
-//climbing()
-//makes the player climb
-/******************************************************/
-
-async function climbing(player) {
-    await player.changeAni('climb')
-    player.changeAni('clim')
-}
-
-/******************************************************/
 //endScreen
 /******************************************************/
-
-/******************************************************/
-//death()
-//runs on player death
-/******************************************************/
-
-async function death(player) {
-    xVel = 0
-    player.vel.x = 0
-    player.vel.y = 0
-    player.collider = 'n'
-    await player.changeAni('death')
-    player.changeAni('dead')
-    finish(TEXTARRAY[0])
-}
 
 /******************************************************/
 //won()
@@ -452,8 +366,9 @@ async function death(player) {
  }
 
 /******************************************************/
-//finish()
+//finish(textTrack)
 //runs on level finish
+//input TEXTARRAY
 /******************************************************/
 
  async function finish(textTrack) {
@@ -510,9 +425,9 @@ function healthbar() {
 }
 
 /******************************************************/
-//textMaker()
+//textMaker(textTrack)
 //makes the text
-//uses a placeholder from TEXTARRAY
+//imput  TEXTARRAY
 /******************************************************/
 
 function textMaker(textTrack) {

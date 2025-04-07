@@ -12,7 +12,6 @@
 /***********************************************************/
 //setup()
 /***********************************************************/
-var golemsed = []
 
 function setup() {
     canvasHeight = (16 * Math.floor(windowHeight / 16 - 1));
@@ -22,6 +21,7 @@ function setup() {
     uni()
     startScreen()
 
+    var golemsed = []
     //defines the golems
     for (let i = 0; i < 10; i++) {
       golemsed[i] = new Enemy(golemSheet, 5, 2, (canvasHeight/300), 40, 40, {
@@ -43,7 +43,9 @@ function setup() {
             run: {row: 1 , frames: 5, w:64, h:64, frameDelay: 9}
         },'golem',-16, 300,140,2,-1)
     }
-    player2 = new players(playerSheet,10,1,(canvasHeight/256),16,20,{
+
+    //defines the player
+    player2 = new players(playerSheet,10,1,(canvasHeight/256),14,20,{
         jump: {w:32, h:32, row: 1, frames: 6, frameDelay: 10 },
         death: {w:32, h:32, row: 14, frames: 7, frameDelay: 10 },
         walk: {w:32, h:32, row: 0, frames: 8 },

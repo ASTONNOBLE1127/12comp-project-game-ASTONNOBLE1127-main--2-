@@ -1,6 +1,8 @@
 /**********************************************************/
 //
-//  enemys.js
+//  player.js
+//
+//written by Aston Noble term 1 2025
 //
 /**********************************************************/
 
@@ -24,6 +26,10 @@ class players {
 } 
 
 /******************************************************/
+//player functions
+/******************************************************/
+
+/******************************************************/
 //PAtk()
 //makes the Player attack
 //input(player)
@@ -44,4 +50,77 @@ async function PAtk(player) {
     cooldown = false
     await delay(500)
     stabbing = false
+}
+
+/******************************************************/
+//death(player)
+//runs on player death
+//input player
+/******************************************************/
+
+async function death(player) {
+    xVel = 0
+    player.vel.x = 0
+    player.vel.y = 0
+    player.collider = 'n'
+    await player.changeAni('death')
+    player.changeAni('dead')
+    finish(TEXTARRAY[0])
+}
+
+/******************************************************/
+//movement
+/******************************************************/
+
+/******************************************************/
+//walkWest(player)
+//makes the player walk west
+//input player
+/******************************************************/
+
+async function walkWest(player) {
+    player.scale.x = -(canvasHeight/256);
+    if (cooldown == false) {
+        await player.changeAni('walk')
+        player.changeAni('idle')
+    }
+}
+
+/******************************************************/
+//walkEast(player)
+//makes the player walk east
+//input player
+/******************************************************/
+
+async function walkEast(player) {
+    player.scale.x = (canvasHeight/256);
+    if (cooldown == false) {
+        await player.changeAni('walk')
+        player.changeAni('idle')
+    }
+}
+
+/******************************************************/
+//jump(player)
+//makes the player jump
+//input player
+/******************************************************/
+
+async function jump(player) {
+    jumping = true
+    await player.changeAni('jump')
+    player.changeAni('idle')
+    await delay(2600)
+    jumping = false
+}
+
+/******************************************************/
+//climbing(player)
+//makes the player climb
+//input player
+/******************************************************/
+
+async function climbing(player) {
+    await player.changeAni('climb')
+    player.changeAni('clim')
 }

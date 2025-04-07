@@ -2,9 +2,14 @@
 //
 //  enemys.js
 //
+//written by Aston Noble term 1 2025
+//
+//functions for the enemies
+//enemy template class
+//
 /**********************************************************/
 
-
+//enemy template
 class Enemy {
     constructor(spriteImg,HP,DMG,Scale,w,h,anis,Type,offsetY,trigdist,atkdist,del,xInvert) {
         this.name = new enemys.Sprite(-80000,432)
@@ -33,9 +38,9 @@ class Enemy {
 /******************************************************/
 
 /******************************************************/
-//EDeath()
+//EDeath(enemy)
 //makes the enemy die
-//input(enemy)
+//input array of enemys
 //output(N/A)
 /******************************************************/
 
@@ -50,9 +55,9 @@ async function EDeath(enemy) {
 }
 
 /******************************************************/
-//EAtk()
+//EAtk(enemy)
 //makes the enemy attack
-//input(enemy)
+//input array of enemys
 //output(N/A)
 /******************************************************/
 
@@ -89,9 +94,9 @@ async function EHurt(enemy) {
 }
 
 /******************************************************/
-//ERun()
+//ERun(enemy,player)
 //makes the enemy run
-//input(enemy)
+//input array of enemys and the player
 //output(N/A)
 /******************************************************/
 
@@ -107,8 +112,11 @@ async function ERun(enemy, player) {
     enemy.changeAni('idle')
 }
 
-
-
+/******************************************************/
+//canAtk(enemy)
+//both the player and enemy able to attack
+//input array of enemys and the player
+/******************************************************/
 
 function canAtk(player, enemy) {
     if (Atking == false && enemy.health > 0) {
@@ -117,7 +125,6 @@ function canAtk(player, enemy) {
     if (stabbing == false) {
         if (mouse.presses()) {
             EHurt(enemy)
-            console.log('hit')
             PAtk(player)
         }
     }
