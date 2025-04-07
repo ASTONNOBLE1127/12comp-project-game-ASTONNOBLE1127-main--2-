@@ -77,28 +77,28 @@ function gameRun(player) {
     }
 
     //attacks
-    player.overlapping(enemys, canAtk)
-
-    //movement
-    if (player.overlapping(hopBlock)) {hops = true;}
-    if (kb.presses(' ') && player.colliding(
-        bricks) && (health > 0 && win == false) && (
-        jumping == false || hops == true)) {
-        hops = false; 
-        player.vel.y =-6; 
-        jump(player);
-    }
-    if (kb.pressing('right') && (health > 0 && win == false)) {
-        if (xVel < 21) {xVel = xVel + 3;} 
-        walkEast(player);
-    } else if (kb.pressing('left') && (health > 0 && win == false)) {
-        if (xVel > -21) {xVel = xVel - 3;}
-        walkWest(player);
-    } else if (xVel > 0) {xVel = xVel - 1.5;
-    } else if (xVel < 0) {xVel = xVel + 1.5;}
-
-    //climbing
     if (health > 0.5 && win == false) {
+        player.overlapping(enemys, canAtk)
+
+        //movement
+        if (player.overlapping(hopBlock)) {hops = true;}
+        if (kb.presses(' ') && player.colliding(
+            bricks) && (health > 0 && win == false) && (
+            jumping == false || hops == true)) {
+            hops = false; 
+            player.vel.y =-6; 
+            jump(player);
+        }
+        if (kb.pressing('right') && (health > 0 && win == false)) {
+            if (xVel < 21) {xVel = xVel + 3;} 
+            walkEast(player);
+        } else if (kb.pressing('left') && (health > 0 && win == false)) {
+            if (xVel > -21) {xVel = xVel - 3;}
+            walkWest(player);
+        } else if (xVel > 0) {xVel = xVel - 1.5;
+        } else if (xVel < 0) {xVel = xVel + 1.5;}
+
+        //climbing
         player.vel.x = xVel / 10
         if (player.overlapping(climb) && kb.pressing('up')) {
             player.vel.y = -2.5; 
