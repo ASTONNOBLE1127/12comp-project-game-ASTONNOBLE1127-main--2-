@@ -29,6 +29,11 @@ function startScreen() {
     ttasr.resize(canvasHeight/6,canvasHeight/15) 
     startImage.resize(canvasHeight/6,canvasHeight/15)
     tutorialImage.resize(canvasHeight/6,canvasHeight/15.7)
+    textScale = (canvasHeight/100)
+    let yOffset = -(canvasHeight/3)
+    textMaker(TEXTARRAY[2],yOffset)
+    yOffset = -(canvasHeight/4)
+    textMaker(TEXTARRAY[3],yOffset)
 
     //cleaning
     background(bgC)

@@ -85,7 +85,7 @@ var artifactFound
 var win
 var star = []
 var scoreTotal = [0,0,0,0,0,0,0,0,0,0]
-const TEXTARRAY = ['you lose', 'you win']
+const TEXTARRAY = ['you lose', 'you win','dungeon', 'divers']
 
 //tracking
 var heartCount = 0
@@ -381,7 +381,8 @@ function updateHealth() {
     hopBlock.opacity = 0
     ends.opacity = 1
     textScale = (canvasHeight/100)
-    textMaker(textTrack)
+    let yOffset = -(canvasHeight/16)
+    textMaker(textTrack, yOffset)
     menuButton.x = camera.x + (canvasHeight/5)
     menuButton.y = camera.y + (canvasHeight/4)
     restartButton.x = camera.x - (canvasHeight/5)
@@ -427,10 +428,10 @@ function healthbar() {
 /******************************************************/
 //textMaker(textTrack)
 //makes the text
-//imput  TEXTARRAY
+//input  TEXTARRAY
 /******************************************************/
 
-function textMaker(textTrack) {
+function textMaker(textTrack, yOffset) {
 	let back = 0
 	let front = 1
 	let pos = 0
@@ -442,7 +443,7 @@ function textMaker(textTrack) {
 		back += 1
 		front += 1
         tex = new deletes.Sprite(pos * (canvasHeight/32) - ((textTrack.length+1)/2 * 
-            (canvasHeight/16)) +  camera.x,camera.y - (canvasHeight/256) * 16, 7, 7, 'n');
+            (canvasHeight/16)) +  camera.x,camera.y + yOffset, 7, 7, 'n');
         tex.spriteSheet = letter
         tex.addAni({w:9, h:7, row:0, col:track })
         tex.scale = textScale
