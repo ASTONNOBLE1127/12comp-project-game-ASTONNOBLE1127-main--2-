@@ -79,6 +79,11 @@ function gameRun(player) {
     //attacks
     if (health > 0.5 && win == false) {
         player.overlapping(enemys, canAtk)
+        if (stabbing == false) {
+            if (mouse.presses()) {
+                PAtk(player)
+            }
+        }
 
         //movement
         if (player.overlapping(hopBlock)) {hops = true;}
