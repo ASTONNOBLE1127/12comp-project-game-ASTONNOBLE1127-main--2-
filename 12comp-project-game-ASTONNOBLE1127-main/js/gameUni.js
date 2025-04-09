@@ -442,7 +442,7 @@ function textMaker(textTrack, yOffset) {
 		pos += 2
 		back += 1
 		front += 1
-        tex = new deletes.Sprite(pos * (canvasHeight/32) - ((textTrack.length+1)/2 * 
+        tex = new words.Sprite(pos * (canvasHeight/32) - ((textTrack.length+1)/2 * 
             (canvasHeight/16)) +  camera.x,camera.y + yOffset, 7, 7, 'n');
         tex.spriteSheet = letter
         tex.addAni({w:9, h:7, row:0, col:track })

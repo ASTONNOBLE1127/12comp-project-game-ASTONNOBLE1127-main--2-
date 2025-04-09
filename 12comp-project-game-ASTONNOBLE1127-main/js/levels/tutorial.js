@@ -48,7 +48,7 @@ function tutorial() {
     );
 
     //level artifact
-    chest = new Sprite(canvasHeight/16 * RELICPOINT[level*2],canvasHeight/16 * RELICPOINT[level*2+1],16,16,'n')
+    chest = new deletes.Sprite(canvasHeight/16 * RELICPOINT[level*2],canvasHeight/16 * RELICPOINT[level*2+1],16,16,'n')
     chest.spriteSheet = tiles
     chest.addAnis({
         closed:{w:16, h:16, col:12, row:9},
