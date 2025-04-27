@@ -46,7 +46,7 @@ function planes() {
       //til.spriteSheet = planeTiles
       //til.addAni({w:canvasHeight/16,h:canvasHeight/16,row:0,col:round(c)})
       console.log('y='+ y + ' ' + round(c))
-      til.color = ('#' + round(c))
+      til.color = ('#' + round(c) + round(c))
       til.text = round(c)
       til.layer = 0
         }
@@ -87,7 +87,7 @@ function planeRun() {
           //til.spriteSheet = planeTiles
           //til.addAni({w:canvasHeight/16,h:canvasHeight/16,row:0,col:round(c)})
           //console.log('y='+ y + ' ' + round(c))
-          til.color = ('#' + round(c))
+          til.color = ('#' + round(c) + round(c))
           til.text = round(c)
           til.layer = 0
             }

@@ -1,3 +1,12 @@
+/********************************************* */
+//
+// tonk GAME
+//
+//written partially by Aston Noble term 1 2025
+//
+//experimental code
+//
+/********************************************* */
 var terrain = []
 
 function tonkers() {

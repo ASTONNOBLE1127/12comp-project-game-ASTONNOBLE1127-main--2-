@@ -15,7 +15,43 @@
 
 </head> 
 <body>
-    <div class="um">
+    <div class="fe"> 
+        <button class="nim" id="back">x</button>
+<div>
+    <div class="box3">
+    <div class="box2">
+        
+        <p id="kil" class="nim">instructions</p id="kil">
+        <div class="thin">
+        <p id="kil" class="nim">w</p id="kil">
+        <p id="kil" class="nim">walk fowards</p id="kil">
+        <p id="kil" class="nim">a</p id="kil">
+        <p id="kil" class="nim">walk left</p id="kil">
+        <p id="kil" class="nim">s</p id="kil">
+        <p id="kil" class="nim">walk backwards</p id="kil">
+        <p id="kil" class="nim">d</p id="kil">
+        <p id="kil" class="nim">walk right</p id="kil">
+        <p id="kil" class="nim">left click</p id="kil">
+        <p id="kil" class="nim">shoot</p id="kil">
+    </div></div>
+</div>
+</div>
+    <div class="box3">
+    <div class="box1">
+        <p id="kil" class="nim">kill the enemys to survive</p id="kil">
+            <p></p>
+        <p id="kil" class="nim">get to the end to win</p id="kil">
+    </div>
+    </div>
+</div>
+<script>
+document.getElementById("back").addEventListener("click",home); //runs start function
+
+    function home() { //takes user to details page
+        window.location.replace("index.html")
+    }
+    </script>
+    <!---     <div class="um">
 <a id="biu" class ='jim'>D</a>
 <a id="biu" class ='nim'>o</a>
 <a id="biu" class ='nim'>o</a>
@@ -23,17 +59,9 @@
 <a id="biu" class ='nim'>e</a>
 <a id="biu" class ='tim'>D</a>
 </div>
-<p class ='nim' id="start">start</p>
-<p class ='nim' id="instruction">instructions</p>
-
-<script>
-document.getElementById("instruction").addEventListener("click",instruct); //runs start function
-
-    function instruct() { //takes user to details page
-        window.location.replace("instruction.html")
-    }
-    </script>
-  <!---- <a-scene physics="gravity: -9.8;restitution: 0.1" inspector-plugin-recast cursor="rayOrigin:mouse">
+<p class ='nim'>start</p>
+<p class ='nim'>instructions</p>
+   <a-scene physics="gravity: -9.8;restitution: 0.1" inspector-plugin-recast cursor="rayOrigin:mouse">
         <a-entity id="player" camera look-controls="enabled:true; pointerLockEnabled:true" wasd-controls position="0 1.6 0">
             <a-entity cursor
             position="0 0 -1"
