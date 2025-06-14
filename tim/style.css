@@ -1,0 +1,28 @@
+header {
+    background-color: green;
+    display: flex;
+    justify-content: right;
+    align-content: center;
+    padding: 1vw;
+    margin: 0vw;
+    width: 100vw;
+}
+body {
+    padding:0px;
+    margin: 0vw;
+    background-color: yellow;
+}
+#pfp {
+    margin-right: 2vw;
+    border-radius: 100%;
+    width:5vw;
+}
+.admin {
+    margin-top: auto;
+    margin-bottom: auto;
+    margin-right: 2vw;
+    width:8vw;
+    height: 4vw;
+    font-size: 2vw;
+    border-radius: 1vw;
+}

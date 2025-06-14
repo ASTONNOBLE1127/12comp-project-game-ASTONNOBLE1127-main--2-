@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>Game project Aston Noble</title>
+        <link rel="stylesheet" href="./style.css">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.8.0/p5.js" integrity="sha512-bzpp8klYroR6PFgL3RJ+VkvY5hJna7Zd38OA56peUDHSNQpSiN9lDQVnMYtcw7hoAVhbR6mAOdH+ymzg1o+G0A==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.8.0/addons/p5.sound.js" integrity="sha512-TU9AWtV5uUZPX8dbBAH8NQF1tSdigPRRT82vllAQ1Ke28puiqLA6ZVKxtUGlgrH6yWFnkKy+sE6luNEGH9ar0A==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+        <script src="https://p5play.org/v3/planck.min.js"></script>
+        <script src="https://p5play.org/v3/p5play.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+        
+
+        <script type="module" src="/tim/n.mjs"></script>
+    </head>
+    <body>
+        <header>
+            <button class="admin" onclick="admin()">Admin</button>
+            <img class="pfp" src="https://lh3.googleusercontent.com/a/ACg8ocIBwGIt9IR2zzutMP_-XpjJpScb0JeaAuI7Vrh5U7UUTZ4HxQ=s96-c">
+        </header>
+        <script>
+            function admin() {
+                var userDetails = JSON.parse(localStorage.getItem("userDetails"))
+                console.log(userDetails.name);
+            }
+        </script>
+    </body>
+</html>
